@@ -21,6 +21,22 @@ export default {
     const height = container.offsetHeight;
     const width = container.offsetWidth;
 
+    const tooltip = new G6.Tooltip({
+        offsetX: -20,
+        offsetY: 30,
+        getContent(e) {
+          console.log('getContent execute');
+          return `
+            <p style="width: 180px; padding: 8px 16px">${e.target.attr('tips')}</p>
+          `;
+        },
+        shouldBegin(e) {
+          console.log('shouldBegin execute');
+          return true;
+        },
+        itemTypes: ['node'],
+      });
+
     this.graph = new G6.Graph({
       container: 'g6-container',
       height,
@@ -31,13 +47,13 @@ export default {
       modes: {
         default: ['drag-node', 'drag-canvas'],
       },
+      plugins: [tooltip],
     });
 
     this.graph.addItem('node', {
       id: `node${Date.now()}`,
-      x: 100,
-      y: 100,
-      label: 'test-test',
+      x: 200,
+      y: 200,
       type: 'customNode',
     });
   },
@@ -56,6 +72,7 @@ export default {
   background-color: #eee;
 }
 #g6-container {
+  position: relative;
   height: 100%;
   background-color: #fff;
 }
