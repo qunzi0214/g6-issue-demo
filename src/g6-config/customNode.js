@@ -34,7 +34,7 @@ export default {
         cursor: 'move',
 
         isSonShape: true,
-        tips: 'this is son shape tips'
+        // tips: 'this is son shape tips'
       },
     });
 

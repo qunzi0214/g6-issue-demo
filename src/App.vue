@@ -25,14 +25,18 @@ export default {
         offsetX: -20,
         offsetY: 30,
         getContent(e) {
-          console.log('getContent execute');
+          console.log('getContent execute', e.target.attr('tips'));
           return `
             <p style="width: 180px; padding: 8px 16px">${e.target.attr('tips')}</p>
           `;
         },
         shouldBegin(e) {
-          console.log('shouldBegin execute');
-          return true;
+          if(e.target.attr('tips')) {
+            console.log('shouldBegin execute');
+            return true;
+          }
+          
+          return false;
         },
         itemTypes: ['node'],
       });
